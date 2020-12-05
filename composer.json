@@ -1,0 +1,36 @@
+{
+    "name": "ryssbowh/craft-gtag",
+    "description": "Google tag integration",
+    "type": "craft-plugin",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "gtag"
+    ],
+    "support": {
+        "docs": "https://github.com/ryssbowh/craft-gtag/blob/master/README.md",
+        "issues": "https://github.com/ryssbowh/craft-gtag/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Boris Blondin"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "Ryssbowh\\Gtag\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Google Tags",
+        "handle": "gtag",
+        "class": "Ryssbowh\\Gtag\\Gtag"
+    },
+	"minimum-stability": "stable"
+}
