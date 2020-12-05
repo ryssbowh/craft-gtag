@@ -3,7 +3,10 @@
 namespace Ryssbowh\Gtag;
 
 use Craft;
+use Ryssbowh\Gtag\Models\Settings;
 use craft\base\Plugin;
+use craft\web\View;
+use yii\base\Event;
 
 class Gtag extends Plugin
 {
@@ -19,19 +22,43 @@ class Gtag extends Plugin
 
         $measurementId = $this->getSettings()->measurementId;
 
-        $js = '<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+        if ($measurementId and Craft::$app->request->getIsSiteRequest()) {
+            Event::on(View::class, View::EVENT_BEGIN_BODY, function () use ($measurementId) {
+                echo '<script async src="https://www.googletagmanager.com/gtag/js?id='.$measurementId.'"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  gtag("js", new Date());
 
-  gtag('config', 'GA_MEASUREMENT_ID');
-</script>
-';
-        if ($measurementId) {
-            Event::on(View::class, View::EVENT_BEFORE_RENDER_PAGE_TEMPLATE, function () {
-                dd(1);
+  gtag("config", "'.$measurementId.'");
+</script>';
             });
         }
+    }
+
+    /**
+     * Creates and returns the model used to store the plugin’s settings.
+     *
+     * @return \craft\base\Model|null
+     */
+    protected function createSettingsModel()
+    {
+        return new Settings();
+    }
+
+    /**
+     * Returns the rendered settings HTML, which will be inserted into the content
+     * block on the settings page.
+     *
+     * @return string The rendered settings HTML
+     */
+    protected function settingsHtml(): string
+    {
+        return Craft::$app->view->renderTemplate(
+            'gtag/settings',
+            [
+                'settings' => $this->getSettings()
+            ]
+        );
     }
 }

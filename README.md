@@ -4,6 +4,6 @@
 
 - Enable : `./craft plugin/install gtag`
 
-- Enter your measurement Id in the settings.
+- Enter your measurement Id in the settings. No measurement ID means gtag is disabled.
 
 Done
