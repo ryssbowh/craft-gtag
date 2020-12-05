@@ -4,7 +4,7 @@
 
 {{ forms.autosuggestField({
     label: 'Measurement ID'|t('gtag'),
-    instructions: 'Example : UA-123456789-1. Entering no value here will disable gtags'|t('gtag')
+    instructions: 'Example : UA-123456789-1. Entering no value here will disable gtags'|t('gtag'),
     name: 'measurementId',
     value: settings.measurementId,
     errors: settings.getErrors('measurementId'),
