@@ -31,6 +31,5 @@
         "name": "Google Tags",
         "handle": "gtag",
         "class": "Ryssbowh\\Gtag\\Gtag"
-    },
-	"minimum-stability": "stable"
+    }
 }

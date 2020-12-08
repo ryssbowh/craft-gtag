@@ -8,6 +8,7 @@ use craft\base\Model;
 class Settings extends Model
 {
     public $measurementId = '';
+    public $onlyProduction = true;
 
     /**
      * @return array
@@ -15,7 +16,8 @@ class Settings extends Model
     public function rules()
     {
         return [
-            ['measurementId', 'string']
+            ['measurementId', 'string'],
+            ['onlyProduction', 'boolean']
         ];
     }
 }

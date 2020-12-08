@@ -11,3 +11,11 @@
     suggestEnvVars: true
     }) 
 }}
+
+{{ forms.lightswitch({
+	label: 'Only in production mode'|t('gtag'),
+	name: 'onlyProduction',
+	on: settings.onlyProduction,
+	errors: settings.getErrors('onlyProduction')
+	})
+}}

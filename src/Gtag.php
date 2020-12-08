@@ -21,10 +21,14 @@ class Gtag extends Plugin
         parent::init();
 
         $measurementId = $this->getSettings()->measurementId;
+        $onlyProduction = $this->getSettings()->onlyProduction;
 
-        if ($measurementId and Craft::$app->request->getIsSiteRequest()) {
-            Event::on(View::class, View::EVENT_BEGIN_BODY, function () use ($measurementId) {
-                echo '<script async src="https://www.googletagmanager.com/gtag/js?id='.$measurementId.'"></script>
+        if (!$measurementId or !Craft::$app->request->getIsSiteRequest() or ($onlyProduction and getenv('ENVIRONMENT') != 'production')) {
+            return;
+        }
+
+        Event::on(View::class, View::EVENT_BEGIN_BODY, function () use ($measurementId) {
+            echo '<script async src="https://www.googletagmanager.com/gtag/js?id='.$measurementId.'"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -32,8 +36,7 @@ class Gtag extends Plugin
 
   gtag("config", "'.$measurementId.'");
 </script>';
-            });
-        }
+        });
     }
 
     /**
