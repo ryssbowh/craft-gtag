@@ -2,20 +2,26 @@
 
 {% set errors = settings.getErrors() %}
 
-{{ forms.autosuggestField({
-    label: 'Measurement ID'|t('gtag'),
-    instructions: 'Example : UA-123456789-1. Entering no value here will disable gtags'|t('gtag'),
-    name: 'measurementId',
-    value: settings.measurementId,
-    errors: settings.getErrors('measurementId'),
-    suggestEnvVars: true
-    }) 
-}}
+{% if sites|length > 0 %}
+    {% for site in sites %}
+        <h2>{{ 'Settings for {site}'|t('gtag', {site:site.name}) }}</h2>
 
-{{ forms.lightswitch({
-	label: 'Only in production mode'|t('gtag'),
-	name: 'onlyProduction',
-	on: settings.onlyProduction,
-	errors: settings.getErrors('onlyProduction')
-	})
-}}
+        {{ forms.autosuggestField({
+            label: 'Measurement ID'|t('gtag'),
+            instructions: 'Example : UA-123456789-1. Entering no value here will disable gtags'|t('gtag'),
+            name: 'measurementId['~site.id~']',
+            value: settings.getMeasurementId(site),
+            suggestEnvVars: true
+            }) 
+        }}
+
+        {{ forms.lightswitch({
+            label: 'Only in production mode'|t('gtag'),
+            name: 'onlyProduction['~site.id~']',
+            on: settings.getOnlyProduction(site),
+            })
+        }}
+    {% endfor %}
+{% else %}
+    <p>{{ 'Add a site before changing these settings'|t('gtag') }}
+{% endif %}

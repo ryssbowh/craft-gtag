@@ -20,10 +20,11 @@ class Gtag extends Plugin
     {
         parent::init();
 
-        $measurementId = $this->getSettings()->measurementId;
-        $onlyProduction = $this->getSettings()->onlyProduction;
+        $site = Craft::$app->sites->getCurrentSite();
+        $measurementId = $this->getSettings()->getMeasurementId($site);
+        $onlyProduction = $this->getSettings()->getOnlyProduction($site);
 
-        if (!$measurementId or !Craft::$app->request->getIsSiteRequest() or ($onlyProduction and getenv('ENVIRONMENT') != 'production')) {
+        if (!Craft::$app->request->getIsSiteRequest() or !$site or !$measurementId or ($onlyProduction and getenv('ENVIRONMENT') != 'production')) {
             return;
         }
 
@@ -60,7 +61,8 @@ class Gtag extends Plugin
         return Craft::$app->view->renderTemplate(
             'gtag/settings',
             [
-                'settings' => $this->getSettings()
+                'settings' => $this->getSettings(),
+                'sites' => \Craft::$app->sites->getAllSites()
             ]
         );
     }
