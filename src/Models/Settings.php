@@ -26,8 +26,8 @@ class Settings extends Model
         if (!$site) {
             return null;
         }
-        if (isset($this->measurementId[$site->id])) {
-            return \Craft::parseEnv($this->measurementId[$site->id]);
+        if (isset($this->measurementId[$site->uid])) {
+            return \Craft::parseEnv($this->measurementId[$site->uid]);
         }
         return null;
     }
@@ -37,8 +37,8 @@ class Settings extends Model
         if (!$site) {
             return true;
         }
-        if (isset($this->onlyProduction[$site->id])) {
-            return $this->onlyProduction[$site->id];
+        if (isset($this->onlyProduction[$site->uid])) {
+            return $this->onlyProduction[$site->uid];
         }
         return true;
     }

@@ -9,7 +9,7 @@
         {{ forms.autosuggestField({
             label: 'Measurement ID'|t('gtag'),
             instructions: 'Example : UA-123456789-1. Entering no value here will disable gtags'|t('gtag'),
-            name: 'measurementId['~site.id~']',
+            name: 'measurementId['~site.uid~']',
             value: settings.getMeasurementId(site),
             suggestEnvVars: true
             }) 
@@ -17,7 +17,7 @@
 
         {{ forms.lightswitch({
             label: 'Only in production mode'|t('gtag'),
-            name: 'onlyProduction['~site.id~']',
+            name: 'onlyProduction['~site.uid~']',
             on: settings.getOnlyProduction(site),
             })
         }}
