@@ -24,7 +24,7 @@ class Gtag extends Plugin
         $measurementId = $this->getSettings()->getMeasurementId($site);
         $onlyProduction = $this->getSettings()->getOnlyProduction($site);
 
-        if (!Craft::$app->request->getIsSiteRequest() or !$site or !$measurementId or ($onlyProduction and getenv('ENVIRONMENT') != 'production')) {
+        if (!Craft::$app->request->getIsSiteRequest() or !$measurementId or ($onlyProduction and getenv('ENVIRONMENT') != 'production')) {
             return;
         }
 

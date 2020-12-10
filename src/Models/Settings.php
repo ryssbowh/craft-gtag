@@ -21,6 +21,12 @@ class Settings extends Model
         ];
     }
 
+    /**
+     * Measurement ID getter
+     * 
+     * @param  Site $site
+     * @return ?string
+     */
     public function getMeasurementId($site)
     {
         if (!$site) {
@@ -32,6 +38,12 @@ class Settings extends Model
         return null;
     }
 
+    /**
+     * Only production getter
+     * 
+     * @param  Site $site
+     * @return bool
+     */
     public function getOnlyProduction($site)
     {
         if (!$site) {
