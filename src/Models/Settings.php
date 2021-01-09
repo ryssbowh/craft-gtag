@@ -9,6 +9,7 @@ class Settings extends Model
 {
     public $measurementId = [];
     public $onlyProduction = [];
+    public $cookieFlags = [];
 
     /**
      * @return array
@@ -18,6 +19,7 @@ class Settings extends Model
         return [
             ['measurementId', 'each', 'rule' => ['string']],
             ['onlyProduction', 'each', 'rule' => ['boolean']],
+            ['cookieFlags', 'each', 'rule' => ['string']],
         ];
     }
 
@@ -53,5 +55,16 @@ class Settings extends Model
             return $this->onlyProduction[$site->uid];
         }
         return true;
+    }
+
+    public function getCookieFlags($site)
+    {
+        if (!$site) {
+            return null;
+        }
+        if (isset($this->cookieFlags[$site->uid])) {
+            return $this->cookieFlags[$site->uid];
+        }
+        return 'SameSite=Lax;Secure';
     }
 }

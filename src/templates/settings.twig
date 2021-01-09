@@ -15,6 +15,14 @@
             }) 
         }}
 
+        {{ forms.textField({
+            label: 'Cookie Flags'|t('gtag'),
+            instructions: 'Flags added to the _ga cookie'|t('gtag'),
+            name: 'cookieFlags['~site.uid~']',
+            value: settings.getCookieFlags(site)
+            }) 
+        }}
+
         {{ forms.lightswitch({
             label: 'Only in production mode'|t('gtag'),
             name: 'onlyProduction['~site.uid~']',

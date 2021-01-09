@@ -23,19 +23,24 @@ class Gtag extends Plugin
         $site = Craft::$app->sites->getCurrentSite();
         $measurementId = $this->getSettings()->getMeasurementId($site);
         $onlyProduction = $this->getSettings()->getOnlyProduction($site);
+        $cookieFlag = $this->getSettings()->getCookieFlags($site);
+        $domain = trim(preg_replace('/(http|https):\/\//', '', $site->getBaseUrl()), '/');
 
         if (!Craft::$app->request->getIsSiteRequest() or !$measurementId or ($onlyProduction and getenv('ENVIRONMENT') != 'production')) {
             return;
         }
 
-        Event::on(View::class, View::EVENT_BEGIN_BODY, function () use ($measurementId) {
+        Event::on(View::class, View::EVENT_BEGIN_BODY, function () use ($measurementId, $cookieFlag, $domain) {
             echo '<script async src="https://www.googletagmanager.com/gtag/js?id='.$measurementId.'"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag("js", new Date());
 
-  gtag("config", "'.$measurementId.'");
+  gtag("config", "'.$measurementId.'", {
+    cookie_flags: "'.$cookieFlag.'",
+    cookie_domain: "'.$domain.'"
+    });
 </script>';
         });
     }

@@ -1,5 +1,10 @@
 # ryssbowh/craft-gtag Changelog
 
+## 1.3 - 2021-01-09
+### Added
+- Added domain to the cookie
+- Added Cookie flag setting, defaulted to "SameSite=Lax;Secure"
+
 ## 1.2.1 - 2020-12-09
 ### Fixed
 - Use uid instead of id to reference sites
