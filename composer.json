@@ -16,7 +16,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Boris Blondin"
+            "name": "The Web Puzzlers",
+            "homepage": "https://github.com/ryssbowh"
         }
     ],
     "require": {
@@ -31,6 +32,7 @@
     "extra": {
         "name": "Google Tags",
         "handle": "gtag",
+        "documentationUrl": "https://github.com/ryssbowh/craft-gtag",
         "class": "Ryssbowh\\Gtag\\Gtag"
     }
 }
