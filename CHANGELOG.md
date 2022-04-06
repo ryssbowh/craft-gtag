@@ -1,6 +1,10 @@
 # ryssbowh/craft-gtag Changelog
 
-## 1.3 - 2021-01-09
+## 2.0.0 - unreleased
+### Changed
+- Craft 4 support
+
+## 1.3.0 - 2021-01-09
 ### Added
 - Added domain to the cookie
 - Added Cookie flag setting, defaulted to "SameSite=Lax;Secure"

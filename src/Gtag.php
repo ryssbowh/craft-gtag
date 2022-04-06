@@ -4,6 +4,7 @@ namespace Ryssbowh\Gtag;
 
 use Craft;
 use Ryssbowh\Gtag\Models\Settings;
+use craft\base\Model;
 use craft\base\Plugin;
 use craft\web\View;
 use yii\base\Event;
@@ -12,11 +13,11 @@ class Gtag extends Plugin
 {
     public static $plugin;
 
-    public $hasCpSettings = true;
+    public bool $hasCpSettings = true;
 
     public $controllerNamespace = "Ryssbowh\\Gtag\\Controllers";
 
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -50,7 +51,7 @@ class Gtag extends Plugin
      *
      * @return \craft\base\Model|null
      */
-    protected function createSettingsModel()
+    protected function createSettingsModel(): ?Model
     {
         return new Settings();
     }
