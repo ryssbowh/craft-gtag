@@ -1,6 +1,6 @@
 <?php
 
-namespace Ryssbowh\Gtag\Models;
+namespace Ryssbowh\Gtag\models;
 
 use Craft;
 use craft\base\Model;
@@ -29,7 +29,7 @@ class Settings extends Model
      * @param  Site $site
      * @return ?string
      */
-    public function getMeasurementId($site)
+    public function getMeasurementId($site): ?string
     {
         if (!$site) {
             return null;
@@ -46,7 +46,7 @@ class Settings extends Model
      * @param  Site $site
      * @return bool
      */
-    public function getOnlyProduction($site)
+    public function getOnlyProduction($site): bool
     {
         if (!$site) {
             return true;
@@ -57,7 +57,7 @@ class Settings extends Model
         return true;
     }
 
-    public function getCookieFlags($site)
+    public function getCookieFlags($site): ?string
     {
         if (!$site) {
             return null;

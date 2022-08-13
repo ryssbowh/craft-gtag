@@ -1,6 +1,6 @@
 {
     "name": "ryssbowh/craft-gtag",
-    "description": "Google tag integration",
+    "description": "Google UA and GTM integration",
     "type": "craft-plugin",
     "keywords": [
         "craft",
@@ -30,7 +30,7 @@
         }
     },
     "extra": {
-        "name": "Google Tags",
+        "name": "Google UA and GTM",
         "handle": "gtag",
         "documentationUrl": "https://github.com/ryssbowh/craft-gtag",
         "class": "Ryssbowh\\Gtag\\Gtag"

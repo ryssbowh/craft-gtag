@@ -3,7 +3,8 @@
 namespace Ryssbowh\Gtag;
 
 use Craft;
-use Ryssbowh\Gtag\Models\Settings;
+use Ryssbowh\Gtag\models\Settings;
+use Ryssbowh\Gtag\services\Gtag as GtagService;
 use craft\base\Model;
 use craft\base\Plugin;
 use craft\web\View;
@@ -15,41 +16,26 @@ class Gtag extends Plugin
 
     public bool $hasCpSettings = true;
 
-    public $controllerNamespace = "Ryssbowh\\Gtag\\Controllers";
-
+    /**
+     * @inheritDoc
+     */
     public function init(): void
     {
         parent::init();
 
-        $site = Craft::$app->sites->getCurrentSite();
-        $measurementId = $this->getSettings()->getMeasurementId($site);
-        $onlyProduction = $this->getSettings()->getOnlyProduction($site);
-        $cookieFlag = $this->getSettings()->getCookieFlags($site);
-        $domain = trim(preg_replace('/(http|https):\/\//', '', $site->getBaseUrl()), '/');
+        static::$plugin = $this;
 
-        if (!Craft::$app->request->getIsSiteRequest() or !$measurementId or ($onlyProduction and getenv('ENVIRONMENT') != 'production')) {
-            return;
+        $this->setComponents([
+            'gtag' => GtagService::class
+        ]);
+
+        if (Craft::$app->request->getIsSiteRequest()) {
+            Gtag::$plugin->gtag->registerCode();
         }
-
-        Event::on(View::class, View::EVENT_BEGIN_BODY, function () use ($measurementId, $cookieFlag, $domain) {
-            echo '<script async src="https://www.googletagmanager.com/gtag/js?id='.$measurementId.'"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag("js", new Date());
-
-  gtag("config", "'.$measurementId.'", {
-    cookie_flags: "'.$cookieFlag.'",
-    cookie_domain: "'.$domain.'"
-    });
-</script>';
-        });
     }
 
     /**
-     * Creates and returns the model used to store the plugin’s settings.
-     *
-     * @return \craft\base\Model|null
+     * @inheritDoc
      */
     protected function createSettingsModel(): ?Model
     {
@@ -57,10 +43,7 @@ class Gtag extends Plugin
     }
 
     /**
-     * Returns the rendered settings HTML, which will be inserted into the content
-     * block on the settings page.
-     *
-     * @return string The rendered settings HTML
+     * @inheritDoc
      */
     protected function settingsHtml(): string
     {

@@ -1,34 +1,38 @@
 {% import "_includes/forms" as forms %}
 
 {% set errors = settings.getErrors() %}
+{% set first = true %}
 
 {% if sites|length > 0 %}
     {% for site in sites %}
-        <h2>{{ 'Settings for {site}'|t('gtag', {site:site.name}) }}</h2>
+        <h2 {% if first %}class="first"{% endif %}>{{ 'Settings for {site}'|t('gtag', {site:site.name}) }}</h2>
 
         {{ forms.autosuggestField({
-            label: 'Measurement ID'|t('gtag'),
+            label: 'UA or GTM ID'|t('gtag'),
             instructions: 'Example : UA-123456789-1. Entering no value here will disable gtags'|t('gtag'),
-            name: 'measurementId['~site.uid~']',
+            name: 'measurementId[' ~ site.uid ~ ']',
             value: settings.getMeasurementId(site),
-            suggestEnvVars: true
+            suggestEnvVars: true,
+            size: 30
             }) 
         }}
 
         {{ forms.textField({
             label: 'Cookie Flags'|t('gtag'),
-            instructions: 'Flags added to the _ga cookie'|t('gtag'),
-            name: 'cookieFlags['~site.uid~']',
-            value: settings.getCookieFlags(site)
+            instructions: 'Flags added to the _ga cookie, only applies to UA tags'|t('gtag'),
+            name: 'cookieFlags[' ~ site.uid ~ ']',
+            value: settings.getCookieFlags(site),
+            size: 50
             }) 
         }}
 
-        {{ forms.lightswitch({
+        {{ forms.lightswitchField({
             label: 'Only in production mode'|t('gtag'),
-            name: 'onlyProduction['~site.uid~']',
+            name: 'onlyProduction[' ~ site.uid ~ ']',
             on: settings.getOnlyProduction(site),
             })
         }}
+        {% set first = false %}
     {% endfor %}
 {% else %}
     <p>{{ 'Add a site before changing these settings'|t('gtag') }}

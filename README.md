@@ -1,20 +1,17 @@
-# Gtag plugin for Craft CMS 3.5.x
+# Gtag plugin for Craft CMS 4.x
 
-## 1.3 update
+This plugin integrates with UA, UA4 and GTM measurement ids
 
-The \_ga cookie will now be loaded with a flag "SameSite=Lax;Secure" by default.
-This will be a problem for sites that don't run under https, check your browser console for issues, it can be disabledin the settings.
+Also available for Craft 3, see v1 branch.
 
-## 1.2 update
+## 2.1 update
 
-Enter your measurement ID again for all sites after updating to 1.2
+Google tag manager is now supported
 
 ## Installation
 
-- Install : `composer require ryssbowh/craft-gtag`
+- Install : `composer require ryssbowh/craft-gtag:^2.0`
 
 - Enable : `./craft plugin/install gtag`
 
 - Enter your measurement Id in the settings. No measurement ID means gtag is disabled.
-
-Done
