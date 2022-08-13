@@ -1,6 +1,6 @@
 # ryssbowh/craft-gtag Changelog
 
-## 1.4.0
+## 1.4.0 - 2022-08-13
 ### Added
 - Google tag manager support
 
