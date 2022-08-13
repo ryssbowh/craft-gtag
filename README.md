@@ -17,7 +17,7 @@ Enter your measurement ID again for all sites after updating to 1.2
 
 ## Installation
 
-- Install : `composer require ryssbowh/craft-gtag`
+- Install : `composer require ryssbowh/craft-gtag:^1.0`
 
 - Enable : `./craft plugin/install gtag`
 
