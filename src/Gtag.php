@@ -28,7 +28,7 @@ class Gtag extends Plugin
             'gtag' => GtagService::class
         ]);
 
-        if (Craft::$app->request->getIsSiteRequest()) {
+        if (Craft::$app->request->getIsSiteRequest() and !Craft::$app->request->getIsActionRequest()) {
             Gtag::$plugin->gtag->registerCode();
         }
     }
