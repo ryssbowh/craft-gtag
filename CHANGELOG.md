@@ -1,5 +1,9 @@
 # ryssbowh/craft-gtag Changelog
 
+## 2.1.1 - 2022-08-23
+### Fixed
+- Do not register code for action requests
+
 ## 2.1.0 - 2022-08-13
 ### Added
 - Google tag manager support
