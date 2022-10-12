@@ -1,5 +1,9 @@
 # ryssbowh/craft-gtag Changelog
 
+## 2.1.2 - 2022-10-12
+### Changed
+- Changed plugin icon
+
 ## 2.1.1 - 2022-08-23
 ### Fixed
 - Do not register code for action requests
