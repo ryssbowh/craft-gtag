@@ -1,13 +1,19 @@
 {
     "name": "ryssbowh/craft-gtag",
-    "description": "Google UA and GTM integration",
+    "description": "Google UA, GA4 and GTM integration",
     "type": "craft-plugin",
     "keywords": [
         "craft",
         "cms",
         "craftcms",
         "craft-plugin",
-        "gtag"
+        "gtag",
+        "analytics",
+        "google",
+        "ua",
+        "ga4",
+        "google tag manager",
+        "gtm"
     ],
     "support": {
         "docs": "https://github.com/ryssbowh/craft-gtag/blob/master/README.md",
@@ -32,7 +38,9 @@
     "extra": {
         "name": "Google UA and GTM",
         "handle": "gtag",
-        "documentationUrl": "https://github.com/ryssbowh/craft-gtag",
+        "developer": "The Web Puzzlers",
+        "developerUrl": "https://puzzlers.run",
+        "documentationUrl": "https://puzzlers.run/plugins/google-tags",
         "class": "Ryssbowh\\Gtag\\Gtag"
     }
 }
