@@ -1,8 +1,6 @@
-# Gtag plugin for Craft CMS 4.x
+# Gtag plugin for Craft CMS 4
 
-This plugin integrates with UA, UA4 and GTM measurement ids
-
-Also available for Craft 3, see v1 branch.
+This plugin integrates with UA, GA4 and GTM measurement ids
 
 ## 2.1 update
 
