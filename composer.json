@@ -38,8 +38,8 @@
         "name": "Google UA and GTM",
         "handle": "gtag",
         "developer": "The Web Puzzlers",
-        "developerUrl": "https://puzzlers.run",
-        "documentationUrl": "https://puzzlers.run/plugins/google-tags",
+        "developerUrl": "https://www.webpuzzlers.co.uk",
+        "documentationUrl": "https://www.webpuzzlers.co.uk/plugins/google-tags",
         "class": "Ryssbowh\\Gtag\\Gtag"
     }
 }

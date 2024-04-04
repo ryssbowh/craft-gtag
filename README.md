@@ -8,4 +8,4 @@ This plugin integrates with UA, GA4 and GTM measurement ids
 
 ## Documentation
 
-[Plugin documentation](https://puzzlers.run/plugins/google-tags)
+[Plugin documentation](https://www.webpuzzlers.co.uk/plugins/google-tags)

@@ -1,5 +1,11 @@
 # ryssbowh/craft-gtag Changelog
 
+## 2.1.4 - 2024-04-04
+
+### Changed
+
+- Updated documentation urls
+
 ## 2.1.3 - 2022-11-17
 
 ### Changed
